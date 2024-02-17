@@ -27,8 +27,6 @@ class BottomNavigation extends GetView<NavigationController> {
   Widget _bottomNavigationMenu(BuildContext context){
     return Obx(() => MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-        child: SizedBox(
-          height: 54,
           child: CupertinoTabBar(
             // showUnselectedLabels: true,
             // showSelectedLabels: true,
@@ -49,6 +47,6 @@ class BottomNavigation extends GetView<NavigationController> {
                 icon: Icon(CupertinoIcons.gear), label: 'BLE Connect'),
           ],
           ),
-        )));
+        ));
   }
 }
