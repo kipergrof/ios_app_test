@@ -17,7 +17,7 @@ import 'ui/bottom_navigation.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initServices();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+  //SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

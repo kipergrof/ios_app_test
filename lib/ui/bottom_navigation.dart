@@ -12,7 +12,9 @@ class BottomNavigation extends GetView<NavigationController> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
+      bottom: false,
+      child: Scaffold(
+          
       bottomNavigationBar:
           _bottomNavigationMenu(context),
       body: Obx(() => IndexedStack(
@@ -22,7 +24,10 @@ class BottomNavigation extends GetView<NavigationController> {
               BleConnectPage(),
                           ],
           )),
-    ));
+          
+    ),
+    
+    );
   }
   Widget _bottomNavigationMenu(BuildContext context){
     return Obx(() => MediaQuery(
