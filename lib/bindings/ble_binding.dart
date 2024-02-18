@@ -4,6 +4,6 @@ import 'package:get/get.dart';
 class BleBinding extends Bindings {
   @override
   void dependencies() async {
-    Get.lazyPut(() => BleController());
+    Get.create(() => BleController(),permanent: false);
   }
 }

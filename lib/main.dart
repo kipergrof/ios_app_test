@@ -8,6 +8,7 @@ import 'package:flutter_test1/bindings/ble_binding.dart';
 import 'package:flutter_test1/bindings/navigation_binding.dart';
 import 'package:flutter_test1/controllers/ble_controller.dart';
 import 'package:flutter_test1/proto/elvl.pbenum.dart';
+import 'package:flutter_test1/ui/ble_connect_page.dart';
 import 'package:get/get.dart';
 
 import 'bindings/air_ride_control_binding.dart';
@@ -34,6 +35,7 @@ Future<void> initServices() async {
 
   log('All services started...');
 }
+
 const double _smallSize = 10.0;
 const Widget horizontalSpaceSmall = SizedBox(width: _smallSize);
 
@@ -46,14 +48,30 @@ class MyApp extends StatelessWidget {
     // 1 <-- SEE HERE
     return GetCupertinoApp(
       // 2 <-- SEE HERE
-      theme: CupertinoThemeData(
+      theme: const CupertinoThemeData(
           brightness: Brightness.dark,
-          primaryColor: Colors.green.shade600,
-          primaryContrastingColor: Colors.white,
-          scaffoldBackgroundColor: Colors.grey.shade900),
+          primaryColor: CupertinoColors.activeGreen,
+          primaryContrastingColor: CupertinoColors.white,
+          scaffoldBackgroundColor: CupertinoColors.darkBackgroundGray,
+          barBackgroundColor: CupertinoColors.darkBackgroundGray,
+          applyThemeToAll: true),
+
       //home: CupertinoSimpleHomePage(),
       //getPages: [GetPage(name: '/', page: ()=> CupertinoSimpleHomePage(),binding: BleBinding())],
-      getPages: [GetPage(name: '/', page: ()=> BottomNavigation(),bindings: [NavigationBinding(),BleBinding(),AirRideControlBinding()])],
+      getPages: [
+        GetPage(
+            name: '/',
+            page: () => BottomNavigation(),
+            bindings: [NavigationBinding(), AirRideControlBinding(),BleBinding()]),
+        GetPage(
+          name: '/ble_connection',
+          page: () => BleConnectPage(),
+          bindings: [],
+          transition: Transition.rightToLeft,
+          curve: Curves.easeInOut,
+          transitionDuration: Duration(days: 500),
+        )
+      ],
     );
   }
 }

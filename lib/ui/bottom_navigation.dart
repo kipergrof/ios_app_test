@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_test1/controllers/air_ride_control_controller.dart';
 import 'package:flutter_test1/controllers/navigation_controller.dart';
 import 'package:flutter_test1/ui/ble_connect_page.dart';
+import 'package:flutter_test1/ui/settings_page.dart';
 import 'package:get/get.dart';
 
 import 'air_ride_control_page.dart';
@@ -19,9 +20,9 @@ class BottomNavigation extends GetView<NavigationController> {
           _bottomNavigationMenu(context),
       body: Obx(() => IndexedStack(
             index: controller.tabIndex.value,
-            children: [
+            children  : [
               AirRideControlPage(),
-              BleConnectPage(),
+              SettingsPage(),
                           ],
           )),
           
@@ -33,6 +34,7 @@ class BottomNavigation extends GetView<NavigationController> {
     return Obx(() => MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
           child: CupertinoTabBar(
+            iconSize:  25.0,
             // showUnselectedLabels: true,
             // showSelectedLabels: true,
             onTap: controller.changeTabIndex,
@@ -47,7 +49,7 @@ class BottomNavigation extends GetView<NavigationController> {
                 icon: Icon(CupertinoIcons.arrow_up_arrow_down),
                 label: 'Control'),
             BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.gear), label: 'Settings'),
+                icon: Icon(CupertinoIcons.gear), label: 'Settings',),
             BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.gear), label: 'BLE Connect'),
           ],
