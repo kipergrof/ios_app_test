@@ -39,8 +39,8 @@ dependencies:
 
   cryptography: ^2.0.1
   collection: ^1.15.0
-  flutter_ble_lib_ios_15: ^2.5.2
   get: ^4.6.6
+  flutter_blue_plus: ^1.31.15
   
 dev_dependencies:
   flutter_test:

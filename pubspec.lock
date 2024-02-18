@@ -94,14 +94,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_ble_lib_ios_15:
+  flutter_blue_plus:
     dependency: "direct main"
     description:
-      name: flutter_ble_lib_ios_15
-      sha256: a1219ebf8923f44b340fdfe10db832bc533ebb9059981d3986197e8a8499e321
+      name: flutter_blue_plus
+      sha256: "3a1299f3a5b97047fb66e48fc9f371ea2aca0d3fb40b380c440aa8392066ac98"
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.2"
+    version: "1.31.15"
   flutter_lints:
     dependency: "direct dev"
     description:

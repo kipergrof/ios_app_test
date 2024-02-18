@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_ble_lib_ios_15/flutter_ble_lib.dart';
 import 'package:flutter_test1/bindings/ble_binding.dart';
 import 'package:flutter_test1/bindings/navigation_binding.dart';
 import 'package:flutter_test1/controllers/ble_controller.dart';
@@ -29,6 +28,8 @@ Future<void> main() async {
 Future<void> initServices() async {
   log('Starting services ...');
 
+
+
   /// Here is where you put get_storage, hive, shared_pref initialization.
   /// or moor connection, or whatever that's async.
   await Get.putAsync(() => BleService().init());
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // 1 <-- SEE HERE
     return GetCupertinoApp(
+     // initialBinding: BleBinding() ,
       // 2 <-- SEE HERE
       theme: const CupertinoThemeData(
           brightness: Brightness.dark,
@@ -62,16 +64,16 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/',
             page: () => BottomNavigation(),
-            bindings: [NavigationBinding(), AirRideControlBinding(),BleBinding()]),
-        GetPage(
+            bindings: [NavigationBinding(), AirRideControlBinding()]),
+         GetPage(
           name: '/ble_connection',
           page: () => BleConnectPage(),
-          bindings: [],
+          bindings: [BleBinding()],
           transition: Transition.rightToLeft,
           curve: Curves.easeInOut,
-          transitionDuration: Duration(days: 500),
-        )
+        ) 
       ],
+      initialRoute: '/',
     );
   }
 }
