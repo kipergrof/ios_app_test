@@ -19,6 +19,7 @@ class BleService extends GetxService {
 
 
   BluetoothDevice? connectedDevice;
+  
 
   final RxList scanResults = [].obs;
 
@@ -48,8 +49,13 @@ class BleService extends GetxService {
         if (results.isNotEmpty) {
           ScanResult r =
               results.last; // if scan filter good only the good device found
-
-            scanResults.addIf(!scanResults.contains(r) && (r.device.advName != ''), r);
+            if (connectedDevice == null)
+            {
+              scanResults.addIf(!scanResults.contains(r) && (r.device.advName != ''),r);
+            }else
+            {
+              scanResults.addIf(!scanResults.contains(r) && r.device.advName != '' && r.device.remoteId != connectedDevice!.remoteId,r);
+            }
 
         }
       },
@@ -96,7 +102,16 @@ class BleService extends GetxService {
 
     _prov = EspProv(transport: TransportBLE(device), security: Security0());
 
+    ScanResult result = scanResults.firstWhere((e) => (e as ScanResult).device.remoteId == connectedDevice!.remoteId);
+    
+    scanResults.removeWhere((e) => (e as ScanResult).device.remoteId == connectedDevice!.remoteId);
+
     await _prov!.establishSession();
+    
+    if(!connectedDevice!.isConnected)
+    {
+      scanResults.add(result);
+    }
   }
 
   // void _setDeviceDisconnectSubscription() {

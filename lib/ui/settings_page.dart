@@ -8,7 +8,9 @@ import 'package:flutter_test1/controllers/navigation_controller.dart';
 import 'package:flutter_test1/ui/ble_connect_page.dart';
 import 'package:get/get.dart';
 
-class SettingsPage extends GetView<NavigationController> {
+import '../controllers/settings_controller.dart';
+
+class SettingsPage extends GetView<SettingsController> {
   @override
   Widget build(BuildContext context) {
     return CupertinoTabView(builder: (context1) {
@@ -22,11 +24,11 @@ class SettingsPage extends GetView<NavigationController> {
               CupertinoFormSection.insetGrouped(
                 backgroundColor: CupertinoColors.darkBackgroundGray,
                 children: [
-                  _myListTile(
-                    'Connection', /* function: () async {
+                 Obx(() =>  _myListTile(
+                    'Device', status: controller.bleDevStatus.value/* function: () async {
                     await Get.toNamed('/ble_connection');
                   } */
-                  ),
+                  )),
                 ],
               )
             ],
@@ -34,9 +36,29 @@ class SettingsPage extends GetView<NavigationController> {
     });
   }
 
-  Widget _myListTile(String title, {Function? function}) {
+  Widget _myListTile(String title, {Function? function, BleDevStatus status = BleDevStatus.disconnected}) {
+    String text = 'N/A';
+    switch (status) {
+      case BleDevStatus.disconnected:
+        text = "Not Connected";
+        break;
+              case BleDevStatus.connected:
+        text = controller.bleService.connectedDevice!.advName;
+        break;
+              case BleDevStatus.connecting:
+        text = "Connecting...";
+        break;
+
+      default:
+    }
+
     return CupertinoListTile(
+      additionalInfo:Text(text) ,
       title: Text(title),
+      leading: const Icon(
+        CupertinoIcons.bluetooth,
+        color: CupertinoColors.white,
+      ),
       trailing: const Icon(
         CupertinoIcons.right_chevron,
         color: CupertinoColors.white,
