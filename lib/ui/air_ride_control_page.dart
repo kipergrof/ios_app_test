@@ -12,22 +12,24 @@ double control_button_height = 60.0;
 class AirRideControlPage extends GetView<AirRideControlController> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: CupertinoPageScaffold(
-          child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _getTop(),
-            const SizedBox(
-              height: 30.0,
-            ),
-            _getControlSection(),
-          ],
-        ),
-      )),
-    );
+    return  CupertinoTabView(builder: (context){
+      return SafeArea(
+        child: CupertinoPageScaffold(
+            child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _getTop(),
+              const SizedBox(
+                height: 30.0,
+              ),
+              _getControlSection(),
+            ],
+          ),
+        )),
+      );
+    });
   }
 
   Widget _getControlSection() {
