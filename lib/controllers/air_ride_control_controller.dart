@@ -12,4 +12,8 @@ class AirRideControlController extends GetxController {
   {
    // _bleService.sendElvlCtrlCmd(cmdId);
   }
+
+  Future<void> goToConnection() async {
+    await Get.toNamed('/settings');
+  }
 }
