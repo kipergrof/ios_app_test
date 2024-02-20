@@ -15,9 +15,9 @@ class BottomNavigation extends GetView<NavigationController> {
     return SafeArea(
       bottom: false,
       child: Scaffold(
-          
-      bottomNavigationBar:
-          _bottomNavigationMenu(context),
+        
+      //bottomNavigationBar:
+          //_bottomNavigationMenu(context),
       body: Obx(() => IndexedStack(
             index: controller.tabIndex.value,
             children  : [

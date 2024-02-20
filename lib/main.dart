@@ -7,6 +7,7 @@ import 'package:flutter_test1/bindings/ble_binding.dart';
 import 'package:flutter_test1/bindings/navigation_binding.dart';
 import 'package:flutter_test1/controllers/ble_controller.dart';
 import 'package:flutter_test1/proto/elvl.pbenum.dart';
+import 'package:flutter_test1/ui/air_ride_control_page.dart';
 import 'package:flutter_test1/ui/ble_connect_page.dart';
 import 'package:get/get.dart';
 
@@ -52,28 +53,28 @@ class MyApp extends StatelessWidget {
       // 2 <-- SEE HERE
       theme: const CupertinoThemeData(
           brightness: Brightness.dark,
-          primaryColor: CupertinoColors.activeGreen,
+          primaryColor: CupertinoColors.systemGrey,
           primaryContrastingColor: CupertinoColors.white,
           scaffoldBackgroundColor: CupertinoColors.darkBackgroundGray,
           barBackgroundColor: CupertinoColors.darkBackgroundGray,
           applyThemeToAll: true),
 
-      //home: CupertinoSimpleHomePage(),
+      home: AirRideControlPage(),
       //getPages: [GetPage(name: '/', page: ()=> CupertinoSimpleHomePage(),binding: BleBinding())],
-      getPages: [
-        GetPage(
-            name: '/',
-            page: () => BottomNavigation(),
-            bindings: [NavigationBinding(), AirRideControlBinding()]),
-         GetPage(
-          name: '/ble_connection',
-          page: () => BleConnectPage(),
-          bindings: [BleBinding()],
-          transition: Transition.rightToLeft,
-          curve: Curves.easeInOut,
-        ) 
-      ],
-      initialRoute: '/',
+      // getPages: [
+      //   GetPage(
+      //       name: '/',
+      //       page: () => BottomNavigation(),
+      //       bindings: [NavigationBinding(), AirRideControlBinding()]),
+      //    GetPage(
+      //     name: '/ble_connection',
+      //     page: () => BleConnectPage(),
+      //     bindings: [BleBinding()],
+      //     transition: Transition.rightToLeft,
+      //     curve: Curves.easeInOut,
+      //   ) 
+      // ],
+      //initialRoute: '/',
     );
   }
 }
