@@ -45,12 +45,16 @@ class AirRideControlPage extends GetView<AirRideControlController> {
   }
 
   Widget _getControlSection() {
-    return IntrinsicHeight(
-      child: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [_getPresetButtons(), _getControlButtons()],
+    return Expanded(
+      child: Center(
+        child: IntrinsicHeight(
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [_getPresetButtons(), _getControlButtons()],
+            ),
+          ),
         ),
       ),
     );
