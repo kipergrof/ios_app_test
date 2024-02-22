@@ -4,10 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_test1/bindings/ble_binding.dart';
-import 'package:flutter_test1/controllers/navigation_controller.dart';
 import 'package:flutter_test1/ui/ble_connect_page.dart';
 import 'package:get/get.dart';
 
+import '../controllers/global_controller.dart';
 import '../controllers/settings_controller.dart';
 
 class SettingsPage extends GetView<SettingsController> {
@@ -25,9 +25,7 @@ class SettingsPage extends GetView<SettingsController> {
                 backgroundColor: CupertinoColors.darkBackgroundGray,
                 children: [
                  Obx(() =>  _myListTile(
-                    'Device', status: controller.bleDevStatus.value/* function: () async {
-                    await Get.toNamed('/ble_connection');
-                  } */
+                    'Device', status: controller.getBleDevStatus().value
                   )),
                 ],
               )

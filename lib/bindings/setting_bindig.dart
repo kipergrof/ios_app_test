@@ -7,7 +7,7 @@ class SettingBinding extends Bindings {
   @override
   void dependencies()  {
 
-    Get.lazyPut(() => SettingsController());
+    Get.lazyPut(() => SettingsController(),fenix:  true);
 
    // Get.create(() => ListItemController());
   }

@@ -4,18 +4,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test1/bindings/ble_binding.dart';
-import 'package:flutter_test1/bindings/navigation_binding.dart';
 import 'package:flutter_test1/controllers/ble_controller.dart';
 import 'package:flutter_test1/proto/elvl.pbenum.dart';
-import 'package:flutter_test1/ui/air_ride_control_page.dart';
+import 'package:flutter_test1/ui/airride_page/base.dart';
 import 'package:flutter_test1/ui/ble_connect_page.dart';
 import 'package:flutter_test1/ui/settings_page.dart';
 import 'package:get/get.dart';
 
 import 'bindings/air_ride_control_binding.dart';
 import 'bindings/setting_bindig.dart';
+import 'controllers/global_controller.dart';
 import 'services/ble_service.dart';
-import 'ui/bottom_navigation.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +36,7 @@ Future<void> initServices() async {
   /// Here is where you put get_storage, hive, shared_pref initialization.
   /// or moor connection, or whatever that's async.
   await Get.putAsync(() => BleService().init());
-
+  await Get.putAsync(() => GlobalController().init());
   log('All services started...');
 }
 
@@ -70,6 +70,13 @@ class MyApp extends StatelessWidget {
           name: '/settings',
           page: () => SettingsPage(),
           bindings: [SettingBinding()],
+          transition: Transition.rightToLeft,
+          curve: Curves.easeInOut,
+        ), 
+        GetPage(
+          name: '/ble_connection',
+          page: () => BleConnectPage(),
+          bindings: [BleBinding()],
           transition: Transition.rightToLeft,
           curve: Curves.easeInOut,
         )],

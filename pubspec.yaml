@@ -44,6 +44,7 @@ dependencies:
   get: ^4.6.6
   flutter_blue_plus: ^1.31.15
   fancy_button_flutter: ^1.0.3+1
+  flutter_glow: ^0.3.0
   
 dev_dependencies:
   flutter_test:

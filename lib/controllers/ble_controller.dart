@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../proto/elvl.pbenum.dart';
 import '../services/ble_service.dart';
+import 'global_controller.dart';
 
 enum BleStatus {
   scannig,
@@ -16,7 +17,7 @@ enum BleStatus {
 class BleController extends GetxController {
   final BleService bleService = Get.find();
 
-  final SettingsController _settingController = Get.find<SettingsController>();
+  final GlobalController _globalController = Get.find<GlobalController>();
 
   Timer? _searchTimer;
 
@@ -31,9 +32,9 @@ class BleController extends GetxController {
      await _bleService.stopScanBle();
     //bleStatus.value = BleStatus.disconnected;
   } */
-  BleDevStatus getBleDevStatus()
+  Rx<BleDevStatus> getBleDevStatus()
   {
-    return _settingController.bleDevStatus.value;
+    return _globalController.getBleDevStatus();
   }
 
   startSearch({bool clearResult = false}) async {
@@ -44,13 +45,13 @@ class BleController extends GetxController {
   }
 
   connect(ScanResult result) async {
-    _settingController.bleDevStatus.value = BleDevStatus.connecting;
+    _globalController.setBleDevStatus(BleDevStatus.connecting);
     await bleService.startProvisioning(result.device);
 
     if (bleService.isConnected(result.device)) {
-      _settingController.bleDevStatus.value = BleDevStatus.connected;
+      _globalController.setBleDevStatus(BleDevStatus.connected);
     } else {
-      _settingController.bleDevStatus.value = BleDevStatus.disconnected;
+      _globalController.setBleDevStatus(BleDevStatus.disconnected);
     }
   }
 

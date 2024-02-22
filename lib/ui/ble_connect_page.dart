@@ -7,7 +7,8 @@ import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:get/get.dart';
 
 import '../controllers/ble_controller.dart';
-import '../controllers/settings_controller.dart';
+import '../controllers/global_controller.dart';
+
 
 class BleConnectPage extends GetView<BleController> {
   @override
@@ -17,7 +18,7 @@ class BleConnectPage extends GetView<BleController> {
     return CupertinoTabView(builder: (context1) {
       return Obx(() => CupertinoPageScaffold(
           child: ListView(
-              children: [_getDevStatusWidget(controller.getBleDevStatus()), _getBleStatusWidget(controller.bleStatus.value)])));
+              children: [_getDevStatusWidget(controller.getBleDevStatus().value), _getBleStatusWidget(controller.bleStatus.value)])));
     });
   }
 
