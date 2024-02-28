@@ -35,22 +35,13 @@ class BleConnectPage extends GetView<BleController> {
             CupertinoListTile(
               trailing: (status == BleDevStatus.connecting)
                   ? const CupertinoActivityIndicator()
-                  : const Icon(CupertinoIcons.xmark_circle_fill),
+                  : IconButton(onPressed: ()
+                  {
+                      controller.disconnect();
+                  }
+                  ,icon: const Icon(CupertinoIcons.xmark_circle_fill )),
               title:  Text(controller.bleService.connectedDevice?.advName?? ''),
 
-              // const SizedBox(
-              //   width: 15,
-              // ),
-              // const CupertinoActivityIndicator()
-              // onTap: () {
-              //   controller
-              //       .connect(controller.bleService.scanResults[index]);
-              // },
-              // trailing: IconButton(
-              //   icon: const Icon(CupertinoIcons.add_circled),
-              //   onPressed: () =>
-              //       controller.connect(controller.scanResults[index]),
-              // ),
             )
           ],
         );

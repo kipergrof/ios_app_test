@@ -11,39 +11,50 @@ import '../controllers/global_controller.dart';
 import '../controllers/settings_controller.dart';
 
 class SettingsPage extends GetView<SettingsController> {
+  bool switchValue = false; // Variable to track the switch state
   @override
   Widget build(BuildContext context) {
     return CupertinoTabView(builder: (context1) {
-      
       return CupertinoPageScaffold(
-          navigationBar: const CupertinoNavigationBar(
-            middle: Text('settings'),
-          ),
           child: ListView(
+        children: [
+          CupertinoFormSection.insetGrouped(
+            header: const Text("Connect"),
+            backgroundColor: CupertinoColors.darkBackgroundGray,
             children: [
-              CupertinoFormSection.insetGrouped(
-                backgroundColor: CupertinoColors.darkBackgroundGray,
-                children: [
-                 Obx(() =>  _myListTile(
-                    'Device', status: controller.getBleDevStatus().value
-                  )),
-                ],
-              )
+              Obx(() => _myListTile('Device',
+                  status: controller.getBleDevStatus().value)),
             ],
-          ));
+          ),
+          CupertinoFormSection.insetGrouped(
+            header: const Text("ECU"),
+            backgroundColor: CupertinoColors.darkBackgroundGray,
+            children: [
+              CupertinoListTile(
+                title: Text("Ride-Hieght-On-Start"),
+              ),
+              CupertinoListTile(title: Text("RideMonitor Mode")),
+              CupertinoListTile(title: Text("Trim Mode")),
+              CupertinoListTile(title: Text("RideMonitor Mode Accuracy")),
+              CupertinoListTile(title: const Text("Tank Presure Mode")),
+            ],
+          )
+        ],
+      ));
     });
   }
 
-  Widget _myListTile(String title, {Function? function, BleDevStatus status = BleDevStatus.disconnected}) {
+  Widget _myListTile(String title,
+      {Function? function, BleDevStatus status = BleDevStatus.disconnected}) {
     String text = 'N/A';
     switch (status) {
       case BleDevStatus.disconnected:
         text = "Not Connected";
         break;
-              case BleDevStatus.connected:
+      case BleDevStatus.connected:
         text = controller.bleService.connectedDevice!.advName;
         break;
-              case BleDevStatus.connecting:
+      case BleDevStatus.connecting:
         text = "Connecting...";
         break;
 
@@ -51,12 +62,13 @@ class SettingsPage extends GetView<SettingsController> {
     }
 
     return CupertinoListTile(
-      additionalInfo:Text(text) ,
+      additionalInfo: Text(text),
       title: Text(title),
-      leading: const Icon(
+
+/*       leading: const Icon(
         CupertinoIcons.bluetooth,
         color: CupertinoColors.white,
-      ),
+      ), */
       trailing: const Icon(
         CupertinoIcons.right_chevron,
         color: CupertinoColors.white,

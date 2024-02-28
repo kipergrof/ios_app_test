@@ -202,7 +202,7 @@ class AirRideControlPage extends GetView<AirRideControlController> {
                 const BorderRadius.vertical(bottom: Radius.circular(360.0)),
             padding: const EdgeInsets.all(0.0), // Állítsa a padding-et 0-ra
             onPressed: () {
-              controller.sendCmd(CrtlCmdId.ONE);
+              print("??");
             },
             child: Icon(
                 color: button_icon_color,
@@ -340,7 +340,7 @@ class AirRideControlPage extends GetView<AirRideControlController> {
           child: CupertinoButton(
             padding: const EdgeInsets.all(0.0), // Állítsa a padding-et 0-ra
             onPressed: () {
-              controller.sendCmd(CrtlCmdId.ONE);
+              print("asd");
             },
             child: Icon(
                 color: button_icon_color,
@@ -426,7 +426,7 @@ class AirRideControlPage extends GetView<AirRideControlController> {
                     topRight: Radius.circular(360.0)),
                 padding: const EdgeInsets.all(0.0), // Állítsa a padding-et 0-ra
                 onPressed: () {
-                  controller.sendCmd(CrtlCmdId.ONE);
+                  controller.setPresetThree();
                 },
                 child: const Text('3'),
               ),
@@ -445,7 +445,7 @@ class AirRideControlPage extends GetView<AirRideControlController> {
               child: CupertinoButton(
                 padding: const EdgeInsets.all(0.0), // Állítsa a padding-et 0-ra
                 onPressed: () {
-                  controller.sendCmd(CrtlCmdId.ONE);
+                  controller.setPresetTwo();
                 },
                 child: const Text('2'),
               ),
@@ -480,8 +480,9 @@ class AirRideControlPage extends GetView<AirRideControlController> {
                     bottomRight: Radius.circular(360.0)),
                 padding: const EdgeInsets.all(0.0), // Állítsa a padding-et 0-ra
                 onPressed: () {
-                  controller.sendCmd(CrtlCmdId.ONE);
+                  controller.setPresetOne();
                 },
+                
                 child: const Text('1'),
               ),
             ),
@@ -503,7 +504,7 @@ class AirRideControlPage extends GetView<AirRideControlController> {
                 borderRadius: BorderRadius.all(Radius.circular(360.0)),
                 padding: const EdgeInsets.all(0.0), // Állítsa a padding-et 0-ra
                 onPressed: () {
-                  controller.sendCmd(CrtlCmdId.ONE);
+                  print("asd");
                 },
                 child: Icon(color: button_icon_color, Icons.filter_list),
               ),
@@ -545,12 +546,12 @@ class AirRideControlPage extends GetView<AirRideControlController> {
           IconButton(
               color: bleIconColor,
               iconSize: 35.0,
-              onPressed: () async {
-                await controller.sendCmd(CrtlCmdId.ONE);
+              onPressed: ()  {
+                 print("asd");
               },
               icon: GlowIcon(
                 bleIcon,
-                blurRadius: 20,
+                blurRadius: 10,
                 color: bleIconColor,
                 glowColor: bleIconGlowColor,
               )),

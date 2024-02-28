@@ -10,16 +10,16 @@ import '../provision/security0.dart';
 import '../provision/transport_ble.dart';
 
 enum BleServiceState { disconnected, scanning, connecting, connected }
-
 class BleService extends GetxService {
+
   final esp32Name = "ESP32";
   EspProv? _prov;
 
   StreamSubscription<BluetoothConnectionState>? _deviceDisconnectSubscription;
 
 
-  BluetoothDevice? connectedDevice;
   
+  BluetoothDevice? connectedDevice;
 
   final RxList scanResults = [].obs;
 
@@ -87,16 +87,6 @@ class BleService extends GetxService {
   }
 
   Future<void> startProvisioning(  BluetoothDevice device) async {
-    // StreamSubscription<BluetoothConnectionState> deviceSubscription =
-    //     _device!.connectionState.listen((BluetoothConnectionState state) async {
-    //   if (state == BluetoothConnectionState.connected) {
-    //     FlutterBluePlus.stopScan();
-    //   }
-    // });
-
-    // // cleanup: cancel subscription when disconnected
-    // _device!
-    //     .cancelWhenDisconnected(deviceSubscription, delayed: true, next: true);
 
     connectedDevice=device;
 
@@ -114,17 +104,20 @@ class BleService extends GetxService {
     }
   }
 
-  // void _setDeviceDisconnectSubscription() {
-  //   _deviceDisconnectSubscription =
-  //       _device!.connectionState.listen((BluetoothConnectionState state) async {
-  //     if (state == BluetoothConnectionState.disconnected) {
-  //       connectionState.value = BleServiceState.disconnected;
-  //       _deviceDisconnectSubscription!.cancel();
-  //     }
-  //   });
-  // }
+  Future<void> stopProvisioning() async {
+    await _prov!.dispose();
+    connectedDevice = null;
+  }
 
-  Future<void> sendCommand() async {}
+  Future<void> sendCtrlCmd(CrtlCmdId cmd_id) async {
+    Uint8List asd = await _prov!.sendReceiveElvlData(elvlPayload(
+            setCtrlCmdReq: SetCtrlCmdReq(cmdId: cmd_id))
+        .writeToBuffer());
+
+    elvlPayload asd3 = elvlPayload.fromBuffer(asd);
+
+    print(asd3);
+  }
 
   bool isConnected( BluetoothDevice device)
   {

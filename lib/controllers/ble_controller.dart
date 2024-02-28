@@ -55,6 +55,17 @@ class BleController extends GetxController {
     }
   }
 
+  disconnect() async{
+    BluetoothDevice ?connected = bleService.connectedDevice;
+    await bleService.stopProvisioning();
+    
+    if (bleService.isConnected(connected!)) {
+      _globalController.setBleDevStatus(BleDevStatus.connected);
+    } else {
+      _globalController.setBleDevStatus(BleDevStatus.disconnected);
+    }
+  }
+
   void setTimer() {
     _searchTimer = Timer.periodic(const Duration(seconds: 13), (timer) async {
       print(DateTime.now());
