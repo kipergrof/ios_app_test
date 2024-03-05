@@ -122,6 +122,23 @@ const EcuSettingsRMM$json = {
 final $typed_data.Uint8List ecuSettingsRMMDescriptor = $convert.base64Decode(
     'Cg5FY3VTZXR0aW5nc1JNTRILCgdSTU1fTl9BEAASCgoGUk1NX09OEAESCwoHUk1NX09GRhAC');
 
+@$core.Deprecated('Use setEcuSettingCmdDescriptor instead')
+const SetEcuSettingCmd$json = {
+  '1': 'SetEcuSettingCmd',
+  '2': [
+    {'1': 'SET_RHOS', '2': 0},
+    {'1': 'SET_RMM', '2': 1},
+    {'1': 'SET_TM', '2': 2},
+    {'1': 'SET_RMA', '2': 3},
+    {'1': 'SET_TPM', '2': 4},
+  ],
+};
+
+/// Descriptor for `SetEcuSettingCmd`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List setEcuSettingCmdDescriptor = $convert.base64Decode(
+    'ChBTZXRFY3VTZXR0aW5nQ21kEgwKCFNFVF9SSE9TEAASCwoHU0VUX1JNTRABEgoKBlNFVF9UTR'
+    'ACEgsKB1NFVF9STUEQAxILCgdTRVRfVFBNEAQ=');
+
 @$core.Deprecated('Use setCtrlCmdReqDescriptor instead')
 const SetCtrlCmdReq$json = {
   '1': 'SetCtrlCmdReq',
@@ -193,6 +210,40 @@ final $typed_data.Uint8List getEcuSettingRespDescriptor = $convert.base64Decode(
     'R0aW5ncxIkCgplcnJvcl9jb2RlGAIgASgNQgWSPwI4CFIJZXJyb3JDb2RlEiUKCmJyaWdodG5l'
     'c3MYAyABKA1CBZI/AjgIUgpicmlnaHRuZXNz');
 
+@$core.Deprecated('Use setEcuSettingReqDescriptor instead')
+const SetEcuSettingReq$json = {
+  '1': 'SetEcuSettingReq',
+  '2': [
+    {'1': 'rma', '3': 10, '4': 1, '5': 14, '6': '.EcuSettingsRMA', '9': 0, '10': 'rma'},
+    {'1': 'tpm', '3': 11, '4': 1, '5': 14, '6': '.EcuSettingsTPM', '9': 0, '10': 'tpm'},
+    {'1': 'rhos', '3': 12, '4': 1, '5': 14, '6': '.EcuSettingsRHOS', '9': 0, '10': 'rhos'},
+    {'1': 'tm', '3': 13, '4': 1, '5': 14, '6': '.EcuSettingsTM', '9': 0, '10': 'tm'},
+    {'1': 'rmm', '3': 14, '4': 1, '5': 14, '6': '.EcuSettingsRMM', '9': 0, '10': 'rmm'},
+  ],
+  '8': [
+    {'1': 'data'},
+  ],
+};
+
+/// Descriptor for `SetEcuSettingReq`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List setEcuSettingReqDescriptor = $convert.base64Decode(
+    'ChBTZXRFY3VTZXR0aW5nUmVxEiMKA3JtYRgKIAEoDjIPLkVjdVNldHRpbmdzUk1BSABSA3JtYR'
+    'IjCgN0cG0YCyABKA4yDy5FY3VTZXR0aW5nc1RQTUgAUgN0cG0SJgoEcmhvcxgMIAEoDjIQLkVj'
+    'dVNldHRpbmdzUkhPU0gAUgRyaG9zEiAKAnRtGA0gASgOMg4uRWN1U2V0dGluZ3NUTUgAUgJ0bR'
+    'IjCgNybW0YDiABKA4yDy5FY3VTZXR0aW5nc1JNTUgAUgNybW1CBgoEZGF0YQ==');
+
+@$core.Deprecated('Use setEcuSettingRespDescriptor instead')
+const SetEcuSettingResp$json = {
+  '1': 'SetEcuSettingResp',
+  '2': [
+    {'1': 'nop', '3': 1, '4': 1, '5': 5, '10': 'nop'},
+  ],
+};
+
+/// Descriptor for `SetEcuSettingResp`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List setEcuSettingRespDescriptor = $convert.base64Decode(
+    'ChFTZXRFY3VTZXR0aW5nUmVzcBIQCgNub3AYASABKAVSA25vcA==');
+
 @$core.Deprecated('Use elvlPayloadDescriptor instead')
 const elvlPayload$json = {
   '1': 'elvlPayload',
@@ -201,6 +252,8 @@ const elvlPayload$json = {
     {'1': 'set_ctrl_cmd_resp', '3': 2, '4': 1, '5': 11, '6': '.SetCtrlCmdResp', '9': 0, '10': 'setCtrlCmdResp'},
     {'1': 'get_ecu_settings_req', '3': 3, '4': 1, '5': 11, '6': '.GetEcuSettingReq', '9': 0, '10': 'getEcuSettingsReq'},
     {'1': 'get_ecu_settings_resp', '3': 4, '4': 1, '5': 11, '6': '.GetEcuSettingResp', '9': 0, '10': 'getEcuSettingsResp'},
+    {'1': 'set_ecu_settings_req', '3': 5, '4': 1, '5': 11, '6': '.SetEcuSettingReq', '9': 0, '10': 'setEcuSettingsReq'},
+    {'1': 'set_ecu_settings_resp', '3': 6, '4': 1, '5': 11, '6': '.SetEcuSettingResp', '9': 0, '10': 'setEcuSettingsResp'},
   ],
   '8': [
     {'1': 'payload'},
@@ -213,6 +266,8 @@ final $typed_data.Uint8List elvlPayloadDescriptor = $convert.base64Decode(
     'gAUg1zZXRDdHJsQ21kUmVxEjwKEXNldF9jdHJsX2NtZF9yZXNwGAIgASgLMg8uU2V0Q3RybENt'
     'ZFJlc3BIAFIOc2V0Q3RybENtZFJlc3ASRAoUZ2V0X2VjdV9zZXR0aW5nc19yZXEYAyABKAsyES'
     '5HZXRFY3VTZXR0aW5nUmVxSABSEWdldEVjdVNldHRpbmdzUmVxEkcKFWdldF9lY3Vfc2V0dGlu'
-    'Z3NfcmVzcBgEIAEoCzISLkdldEVjdVNldHRpbmdSZXNwSABSEmdldEVjdVNldHRpbmdzUmVzcE'
-    'IJCgdwYXlsb2Fk');
+    'Z3NfcmVzcBgEIAEoCzISLkdldEVjdVNldHRpbmdSZXNwSABSEmdldEVjdVNldHRpbmdzUmVzcB'
+    'JEChRzZXRfZWN1X3NldHRpbmdzX3JlcRgFIAEoCzIRLlNldEVjdVNldHRpbmdSZXFIAFIRc2V0'
+    'RWN1U2V0dGluZ3NSZXESRwoVc2V0X2VjdV9zZXR0aW5nc19yZXNwGAYgASgLMhIuU2V0RWN1U2'
+    'V0dGluZ1Jlc3BIAFISc2V0RWN1U2V0dGluZ3NSZXNwQgkKB3BheWxvYWQ=');
 

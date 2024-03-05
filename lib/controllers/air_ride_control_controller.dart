@@ -11,13 +11,13 @@ class AirRideControlController extends GetxController {
   final GlobalController _globalController = Get.find<GlobalController>();
   
   setPresetOne() {
-   _bleService.sendCtrlCmd(CrtlCmdId.ONE);
+   _bleService.ctrlCmdReq(CrtlCmdId.ONE);
   }
     setPresetTwo() {
-   _bleService.sendCtrlCmd(CrtlCmdId.TWO);
+   _bleService.ctrlCmdReq(CrtlCmdId.TWO);
   }
     setPresetThree() {
-   _bleService.sendCtrlCmd(CrtlCmdId.THREE);
+   _bleService.ctrlCmdReq(CrtlCmdId.THREE);
   }
 
   Rx<BleDevStatus> getBleDevStatus() {

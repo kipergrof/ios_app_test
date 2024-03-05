@@ -353,11 +353,190 @@ class GetEcuSettingResp extends $pb.GeneratedMessage {
   void clearBrightness() => clearField(3);
 }
 
+enum SetEcuSettingReq_Data {
+  rma, 
+  tpm, 
+  rhos, 
+  tm, 
+  rmm, 
+  notSet
+}
+
+class SetEcuSettingReq extends $pb.GeneratedMessage {
+  factory SetEcuSettingReq({
+    EcuSettingsRMA? rma,
+    EcuSettingsTPM? tpm,
+    EcuSettingsRHOS? rhos,
+    EcuSettingsTM? tm,
+    EcuSettingsRMM? rmm,
+  }) {
+    final $result = create();
+    if (rma != null) {
+      $result.rma = rma;
+    }
+    if (tpm != null) {
+      $result.tpm = tpm;
+    }
+    if (rhos != null) {
+      $result.rhos = rhos;
+    }
+    if (tm != null) {
+      $result.tm = tm;
+    }
+    if (rmm != null) {
+      $result.rmm = rmm;
+    }
+    return $result;
+  }
+  SetEcuSettingReq._() : super();
+  factory SetEcuSettingReq.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SetEcuSettingReq.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static const $core.Map<$core.int, SetEcuSettingReq_Data> _SetEcuSettingReq_DataByTag = {
+    10 : SetEcuSettingReq_Data.rma,
+    11 : SetEcuSettingReq_Data.tpm,
+    12 : SetEcuSettingReq_Data.rhos,
+    13 : SetEcuSettingReq_Data.tm,
+    14 : SetEcuSettingReq_Data.rmm,
+    0 : SetEcuSettingReq_Data.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SetEcuSettingReq', createEmptyInstance: create)
+    ..oo(0, [10, 11, 12, 13, 14])
+    ..e<EcuSettingsRMA>(10, _omitFieldNames ? '' : 'rma', $pb.PbFieldType.OE, defaultOrMaker: EcuSettingsRMA.RMA_N_A, valueOf: EcuSettingsRMA.valueOf, enumValues: EcuSettingsRMA.values)
+    ..e<EcuSettingsTPM>(11, _omitFieldNames ? '' : 'tpm', $pb.PbFieldType.OE, defaultOrMaker: EcuSettingsTPM.TPM_N_A, valueOf: EcuSettingsTPM.valueOf, enumValues: EcuSettingsTPM.values)
+    ..e<EcuSettingsRHOS>(12, _omitFieldNames ? '' : 'rhos', $pb.PbFieldType.OE, defaultOrMaker: EcuSettingsRHOS.RHOS_N_A, valueOf: EcuSettingsRHOS.valueOf, enumValues: EcuSettingsRHOS.values)
+    ..e<EcuSettingsTM>(13, _omitFieldNames ? '' : 'tm', $pb.PbFieldType.OE, defaultOrMaker: EcuSettingsTM.TM_N_A, valueOf: EcuSettingsTM.valueOf, enumValues: EcuSettingsTM.values)
+    ..e<EcuSettingsRMM>(14, _omitFieldNames ? '' : 'rmm', $pb.PbFieldType.OE, defaultOrMaker: EcuSettingsRMM.RMM_N_A, valueOf: EcuSettingsRMM.valueOf, enumValues: EcuSettingsRMM.values)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  SetEcuSettingReq clone() => SetEcuSettingReq()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  SetEcuSettingReq copyWith(void Function(SetEcuSettingReq) updates) => super.copyWith((message) => updates(message as SetEcuSettingReq)) as SetEcuSettingReq;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static SetEcuSettingReq create() => SetEcuSettingReq._();
+  SetEcuSettingReq createEmptyInstance() => create();
+  static $pb.PbList<SetEcuSettingReq> createRepeated() => $pb.PbList<SetEcuSettingReq>();
+  @$core.pragma('dart2js:noInline')
+  static SetEcuSettingReq getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SetEcuSettingReq>(create);
+  static SetEcuSettingReq? _defaultInstance;
+
+  SetEcuSettingReq_Data whichData() => _SetEcuSettingReq_DataByTag[$_whichOneof(0)]!;
+  void clearData() => clearField($_whichOneof(0));
+
+  @$pb.TagNumber(10)
+  EcuSettingsRMA get rma => $_getN(0);
+  @$pb.TagNumber(10)
+  set rma(EcuSettingsRMA v) { setField(10, v); }
+  @$pb.TagNumber(10)
+  $core.bool hasRma() => $_has(0);
+  @$pb.TagNumber(10)
+  void clearRma() => clearField(10);
+
+  @$pb.TagNumber(11)
+  EcuSettingsTPM get tpm => $_getN(1);
+  @$pb.TagNumber(11)
+  set tpm(EcuSettingsTPM v) { setField(11, v); }
+  @$pb.TagNumber(11)
+  $core.bool hasTpm() => $_has(1);
+  @$pb.TagNumber(11)
+  void clearTpm() => clearField(11);
+
+  @$pb.TagNumber(12)
+  EcuSettingsRHOS get rhos => $_getN(2);
+  @$pb.TagNumber(12)
+  set rhos(EcuSettingsRHOS v) { setField(12, v); }
+  @$pb.TagNumber(12)
+  $core.bool hasRhos() => $_has(2);
+  @$pb.TagNumber(12)
+  void clearRhos() => clearField(12);
+
+  @$pb.TagNumber(13)
+  EcuSettingsTM get tm => $_getN(3);
+  @$pb.TagNumber(13)
+  set tm(EcuSettingsTM v) { setField(13, v); }
+  @$pb.TagNumber(13)
+  $core.bool hasTm() => $_has(3);
+  @$pb.TagNumber(13)
+  void clearTm() => clearField(13);
+
+  @$pb.TagNumber(14)
+  EcuSettingsRMM get rmm => $_getN(4);
+  @$pb.TagNumber(14)
+  set rmm(EcuSettingsRMM v) { setField(14, v); }
+  @$pb.TagNumber(14)
+  $core.bool hasRmm() => $_has(4);
+  @$pb.TagNumber(14)
+  void clearRmm() => clearField(14);
+}
+
+class SetEcuSettingResp extends $pb.GeneratedMessage {
+  factory SetEcuSettingResp({
+    $core.int? nop,
+  }) {
+    final $result = create();
+    if (nop != null) {
+      $result.nop = nop;
+    }
+    return $result;
+  }
+  SetEcuSettingResp._() : super();
+  factory SetEcuSettingResp.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SetEcuSettingResp.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SetEcuSettingResp', createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'nop', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  SetEcuSettingResp clone() => SetEcuSettingResp()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  SetEcuSettingResp copyWith(void Function(SetEcuSettingResp) updates) => super.copyWith((message) => updates(message as SetEcuSettingResp)) as SetEcuSettingResp;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static SetEcuSettingResp create() => SetEcuSettingResp._();
+  SetEcuSettingResp createEmptyInstance() => create();
+  static $pb.PbList<SetEcuSettingResp> createRepeated() => $pb.PbList<SetEcuSettingResp>();
+  @$core.pragma('dart2js:noInline')
+  static SetEcuSettingResp getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SetEcuSettingResp>(create);
+  static SetEcuSettingResp? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get nop => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set nop($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasNop() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearNop() => clearField(1);
+}
+
 enum elvlPayload_Payload {
   setCtrlCmdReq, 
   setCtrlCmdResp, 
   getEcuSettingsReq, 
   getEcuSettingsResp, 
+  setEcuSettingsReq, 
+  setEcuSettingsResp, 
   notSet
 }
 
@@ -367,6 +546,8 @@ class elvlPayload extends $pb.GeneratedMessage {
     SetCtrlCmdResp? setCtrlCmdResp,
     GetEcuSettingReq? getEcuSettingsReq,
     GetEcuSettingResp? getEcuSettingsResp,
+    SetEcuSettingReq? setEcuSettingsReq,
+    SetEcuSettingResp? setEcuSettingsResp,
   }) {
     final $result = create();
     if (setCtrlCmdReq != null) {
@@ -381,6 +562,12 @@ class elvlPayload extends $pb.GeneratedMessage {
     if (getEcuSettingsResp != null) {
       $result.getEcuSettingsResp = getEcuSettingsResp;
     }
+    if (setEcuSettingsReq != null) {
+      $result.setEcuSettingsReq = setEcuSettingsReq;
+    }
+    if (setEcuSettingsResp != null) {
+      $result.setEcuSettingsResp = setEcuSettingsResp;
+    }
     return $result;
   }
   elvlPayload._() : super();
@@ -392,14 +579,18 @@ class elvlPayload extends $pb.GeneratedMessage {
     2 : elvlPayload_Payload.setCtrlCmdResp,
     3 : elvlPayload_Payload.getEcuSettingsReq,
     4 : elvlPayload_Payload.getEcuSettingsResp,
+    5 : elvlPayload_Payload.setEcuSettingsReq,
+    6 : elvlPayload_Payload.setEcuSettingsResp,
     0 : elvlPayload_Payload.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'elvlPayload', createEmptyInstance: create)
-    ..oo(0, [1, 2, 3, 4])
+    ..oo(0, [1, 2, 3, 4, 5, 6])
     ..aOM<SetCtrlCmdReq>(1, _omitFieldNames ? '' : 'setCtrlCmdReq', subBuilder: SetCtrlCmdReq.create)
     ..aOM<SetCtrlCmdResp>(2, _omitFieldNames ? '' : 'setCtrlCmdResp', subBuilder: SetCtrlCmdResp.create)
     ..aOM<GetEcuSettingReq>(3, _omitFieldNames ? '' : 'getEcuSettingsReq', subBuilder: GetEcuSettingReq.create)
     ..aOM<GetEcuSettingResp>(4, _omitFieldNames ? '' : 'getEcuSettingsResp', subBuilder: GetEcuSettingResp.create)
+    ..aOM<SetEcuSettingReq>(5, _omitFieldNames ? '' : 'setEcuSettingsReq', subBuilder: SetEcuSettingReq.create)
+    ..aOM<SetEcuSettingResp>(6, _omitFieldNames ? '' : 'setEcuSettingsResp', subBuilder: SetEcuSettingResp.create)
     ..hasRequiredFields = false
   ;
 
@@ -470,6 +661,28 @@ class elvlPayload extends $pb.GeneratedMessage {
   void clearGetEcuSettingsResp() => clearField(4);
   @$pb.TagNumber(4)
   GetEcuSettingResp ensureGetEcuSettingsResp() => $_ensure(3);
+
+  @$pb.TagNumber(5)
+  SetEcuSettingReq get setEcuSettingsReq => $_getN(4);
+  @$pb.TagNumber(5)
+  set setEcuSettingsReq(SetEcuSettingReq v) { setField(5, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasSetEcuSettingsReq() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearSetEcuSettingsReq() => clearField(5);
+  @$pb.TagNumber(5)
+  SetEcuSettingReq ensureSetEcuSettingsReq() => $_ensure(4);
+
+  @$pb.TagNumber(6)
+  SetEcuSettingResp get setEcuSettingsResp => $_getN(5);
+  @$pb.TagNumber(6)
+  set setEcuSettingsResp(SetEcuSettingResp v) { setField(6, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasSetEcuSettingsResp() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearSetEcuSettingsResp() => clearField(6);
+  @$pb.TagNumber(6)
+  SetEcuSettingResp ensureSetEcuSettingsResp() => $_ensure(5);
 }
 
 

@@ -9,21 +9,37 @@ import 'package:get/get.dart';
 import '../provision/security0.dart';
 import '../provision/transport_ble.dart';
 
-enum BleServiceState { disconnected, scanning, connecting, connected }
 class BleService extends GetxService {
 
   final esp32Name = "ESP32";
   EspProv? _prov;
 
   StreamSubscription<BluetoothConnectionState>? _deviceDisconnectSubscription;
-
-
   
+  Stream<BluetoothConnectionState> getRandomValues() async* {
+    while (true) {
+      if(connectedDevice == null)
+      {
+        yield BluetoothConnectionState.disconnected;
+      }
+      else
+      {
+        if(!connectedDevice!.isConnected)
+        {
+          yield BluetoothConnectionState.disconnected;
+        }
+      }
+      await Future.delayed(const Duration(seconds: 1));
+    }
+  }
+
+
+
   BluetoothDevice? connectedDevice;
 
   final RxList scanResults = [].obs;
 
-  final Rx<BleServiceState> connectionState = BleServiceState.disconnected.obs;
+
 
   Future<BleService> init() async {
     FlutterBluePlus.setLogLevel(LogLevel.verbose, color: false);
@@ -31,6 +47,8 @@ class BleService extends GetxService {
     if (await FlutterBluePlus.isSupported == false) {
       print("Bluetooth not supported by this device");
     }
+
+  
 
     return this;
   }
@@ -85,8 +103,17 @@ class BleService extends GetxService {
       connectionState.value = BleServiceState.disconnected;
     } */
   }
+/*   void _setDeviceDisconnectSubscription() {
+    _deviceDisconnectSubscription =
+        connectedDevice!.connectionState.listen((BluetoothConnectionState state) async {
+      if (state == BluetoothConnectionState.disconnected) {
+        connectionState.value = BleServiceState.disconnected;
+        _deviceDisconnectSubscription!.cancel();
+      }
+    });
+  } */
 
-  Future<void> startProvisioning(  BluetoothDevice device) async {
+  Future<void> startProvisioning(BluetoothDevice device) async {
 
     connectedDevice=device;
 
@@ -105,24 +132,43 @@ class BleService extends GetxService {
   }
 
   Future<void> stopProvisioning() async {
-    await _prov!.dispose();
+    
+    if(_prov != null) {
+      await _prov!.dispose();
+    }
     connectedDevice = null;
   }
 
-  Future<void> sendCtrlCmd(CrtlCmdId cmd_id) async {
+  Future<void> ctrlCmdReq(CrtlCmdId cmd_id) async {
     Uint8List asd = await _prov!.sendReceiveElvlData(elvlPayload(
             setCtrlCmdReq: SetCtrlCmdReq(cmdId: cmd_id))
         .writeToBuffer());
 
     elvlPayload asd3 = elvlPayload.fromBuffer(asd);
 
-    print(asd3);
+  }
+
+  Future<GetEcuSettingResp> getEcuReq() async{
+     Uint8List asd = await _prov!.sendReceiveElvlData(elvlPayload(
+            getEcuSettingsReq: GetEcuSettingReq.create())
+        .writeToBuffer());
+
+    return elvlPayload.fromBuffer(asd).getEcuSettingsResp;
+  }
+
+    Future<void> setEcuReq(SetEcuSettingReq req) async {
+    Uint8List asd = await _prov!.sendReceiveElvlData(elvlPayload(setEcuSettingsReq: req)
+        .writeToBuffer());
+
+    elvlPayload asd3 = elvlPayload.fromBuffer(asd);
   }
 
   bool isConnected( BluetoothDevice device)
   {
     return device.isConnected;
   }
+
+
 
   Stream<BluetoothAdapterState> getAdapterStateStream() {
     return FlutterBluePlus.adapterState;

@@ -149,5 +149,26 @@ class EcuSettingsRMM extends $pb.ProtobufEnum {
   const EcuSettingsRMM._($core.int v, $core.String n) : super(v, n);
 }
 
+class SetEcuSettingCmd extends $pb.ProtobufEnum {
+  static const SetEcuSettingCmd SET_RHOS = SetEcuSettingCmd._(0, _omitEnumNames ? '' : 'SET_RHOS');
+  static const SetEcuSettingCmd SET_RMM = SetEcuSettingCmd._(1, _omitEnumNames ? '' : 'SET_RMM');
+  static const SetEcuSettingCmd SET_TM = SetEcuSettingCmd._(2, _omitEnumNames ? '' : 'SET_TM');
+  static const SetEcuSettingCmd SET_RMA = SetEcuSettingCmd._(3, _omitEnumNames ? '' : 'SET_RMA');
+  static const SetEcuSettingCmd SET_TPM = SetEcuSettingCmd._(4, _omitEnumNames ? '' : 'SET_TPM');
+
+  static const $core.List<SetEcuSettingCmd> values = <SetEcuSettingCmd> [
+    SET_RHOS,
+    SET_RMM,
+    SET_TM,
+    SET_RMA,
+    SET_TPM,
+  ];
+
+  static final $core.Map<$core.int, SetEcuSettingCmd> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static SetEcuSettingCmd? valueOf($core.int value) => _byValue[value];
+
+  const SetEcuSettingCmd._($core.int v, $core.String n) : super(v, n);
+}
+
 
 const _omitEnumNames = $core.bool.fromEnvironment('protobuf.omit_enum_names');

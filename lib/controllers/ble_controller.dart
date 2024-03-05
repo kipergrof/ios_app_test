@@ -25,7 +25,7 @@ class BleController extends GetxController {
 
   // final Rx<BleDevStatus> bleDevStatus = BleDevStatus.disconnected.obs;
 
-  StreamSubscription? listenSearch;
+  //StreamSubscription? listenSearch;
 
 /*   stopSearch() async {
     listenSearch!.cancel();
@@ -38,7 +38,6 @@ class BleController extends GetxController {
   }
 
   startSearch({bool clearResult = false}) async {
-//
     bleStatus.value = BleStatus.scannig;
     await bleService.startScan(clearResult: clearResult);
     bleStatus.value = BleStatus.idle;
@@ -63,12 +62,12 @@ class BleController extends GetxController {
       _globalController.setBleDevStatus(BleDevStatus.connected);
     } else {
       _globalController.setBleDevStatus(BleDevStatus.disconnected);
+      startSearch(clearResult: true);
     }
   }
 
   void setTimer() {
     _searchTimer = Timer.periodic(const Duration(seconds: 13), (timer) async {
-      print(DateTime.now());
       await startSearch();
     });
   }
