@@ -69,6 +69,15 @@ class GlobalController extends GetxController {
     });
   }
 
+    void resetTpmState(EcuSettingsTPM state) {
+    skipNextRead = true;
+    _ecuSettings.update((val) {
+      val?.settings.tpm = state;
+    });
+  }
+
+
+
   void setBleDevStatus(BleDevStatus status) {
     _bleDevStatus.value = status;
     switch (_bleDevStatus.value) {

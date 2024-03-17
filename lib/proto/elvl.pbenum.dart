@@ -65,12 +65,18 @@ class EcuSettingsRMA extends $pb.ProtobufEnum {
   static const EcuSettingsRMA RMA_LOWER_15 = EcuSettingsRMA._(1, _omitEnumNames ? '' : 'RMA_LOWER_15');
   static const EcuSettingsRMA RMA_FACTORY = EcuSettingsRMA._(2, _omitEnumNames ? '' : 'RMA_FACTORY');
   static const EcuSettingsRMA RMA_HIGHER_8 = EcuSettingsRMA._(3, _omitEnumNames ? '' : 'RMA_HIGHER_8');
+  static const EcuSettingsRMA RMA_SETTING_TO_LOWER_15 = EcuSettingsRMA._(4, _omitEnumNames ? '' : 'RMA_SETTING_TO_LOWER_15');
+  static const EcuSettingsRMA RMA_SETTING_TO_FACTORY = EcuSettingsRMA._(5, _omitEnumNames ? '' : 'RMA_SETTING_TO_FACTORY');
+  static const EcuSettingsRMA RMA_SETTING_TO_HIGHER_8 = EcuSettingsRMA._(6, _omitEnumNames ? '' : 'RMA_SETTING_TO_HIGHER_8');
 
   static const $core.List<EcuSettingsRMA> values = <EcuSettingsRMA> [
     RMA_N_A,
     RMA_LOWER_15,
     RMA_FACTORY,
     RMA_HIGHER_8,
+    RMA_SETTING_TO_LOWER_15,
+    RMA_SETTING_TO_FACTORY,
+    RMA_SETTING_TO_HIGHER_8,
   ];
 
   static final $core.Map<$core.int, EcuSettingsRMA> _byValue = $pb.ProtobufEnum.initByValue(values);
@@ -84,12 +90,18 @@ class EcuSettingsTPM extends $pb.ProtobufEnum {
   static const EcuSettingsTPM TPM_PSI_150 = EcuSettingsTPM._(1, _omitEnumNames ? '' : 'TPM_PSI_150');
   static const EcuSettingsTPM TPM_PSI_175 = EcuSettingsTPM._(2, _omitEnumNames ? '' : 'TPM_PSI_175');
   static const EcuSettingsTPM TPM_PSI_200 = EcuSettingsTPM._(3, _omitEnumNames ? '' : 'TPM_PSI_200');
+  static const EcuSettingsTPM TPM_SETTING_TO_PSI_150 = EcuSettingsTPM._(4, _omitEnumNames ? '' : 'TPM_SETTING_TO_PSI_150');
+  static const EcuSettingsTPM TPM_SETTING_TO_PSI_175 = EcuSettingsTPM._(5, _omitEnumNames ? '' : 'TPM_SETTING_TO_PSI_175');
+  static const EcuSettingsTPM TPM_SETTING_TO_PSI_200 = EcuSettingsTPM._(6, _omitEnumNames ? '' : 'TPM_SETTING_TO_PSI_200');
 
   static const $core.List<EcuSettingsTPM> values = <EcuSettingsTPM> [
     TPM_N_A,
     TPM_PSI_150,
     TPM_PSI_175,
     TPM_PSI_200,
+    TPM_SETTING_TO_PSI_150,
+    TPM_SETTING_TO_PSI_175,
+    TPM_SETTING_TO_PSI_200,
   ];
 
   static final $core.Map<$core.int, EcuSettingsTPM> _byValue = $pb.ProtobufEnum.initByValue(values);
@@ -102,11 +114,15 @@ class EcuSettingsRHOS extends $pb.ProtobufEnum {
   static const EcuSettingsRHOS RHOS_N_A = EcuSettingsRHOS._(0, _omitEnumNames ? '' : 'RHOS_N_A');
   static const EcuSettingsRHOS RHOS_OFF = EcuSettingsRHOS._(1, _omitEnumNames ? '' : 'RHOS_OFF');
   static const EcuSettingsRHOS RHOS_ON = EcuSettingsRHOS._(2, _omitEnumNames ? '' : 'RHOS_ON');
+  static const EcuSettingsRHOS RHOS_SETTING_TO_OFF = EcuSettingsRHOS._(3, _omitEnumNames ? '' : 'RHOS_SETTING_TO_OFF');
+  static const EcuSettingsRHOS RHOS_SETTING_TO_ON = EcuSettingsRHOS._(4, _omitEnumNames ? '' : 'RHOS_SETTING_TO_ON');
 
   static const $core.List<EcuSettingsRHOS> values = <EcuSettingsRHOS> [
     RHOS_N_A,
     RHOS_OFF,
     RHOS_ON,
+    RHOS_SETTING_TO_OFF,
+    RHOS_SETTING_TO_ON,
   ];
 
   static final $core.Map<$core.int, EcuSettingsRHOS> _byValue = $pb.ProtobufEnum.initByValue(values);
@@ -119,11 +135,15 @@ class EcuSettingsTM extends $pb.ProtobufEnum {
   static const EcuSettingsTM TM_N_A = EcuSettingsTM._(0, _omitEnumNames ? '' : 'TM_N_A');
   static const EcuSettingsTM TM_ON = EcuSettingsTM._(1, _omitEnumNames ? '' : 'TM_ON');
   static const EcuSettingsTM TM_OFF = EcuSettingsTM._(2, _omitEnumNames ? '' : 'TM_OFF');
+  static const EcuSettingsTM TM_SETTING_TO_ON = EcuSettingsTM._(3, _omitEnumNames ? '' : 'TM_SETTING_TO_ON');
+  static const EcuSettingsTM TM_SETTING_TO_OFF = EcuSettingsTM._(4, _omitEnumNames ? '' : 'TM_SETTING_TO_OFF');
 
   static const $core.List<EcuSettingsTM> values = <EcuSettingsTM> [
     TM_N_A,
     TM_ON,
     TM_OFF,
+    TM_SETTING_TO_ON,
+    TM_SETTING_TO_OFF,
   ];
 
   static final $core.Map<$core.int, EcuSettingsTM> _byValue = $pb.ProtobufEnum.initByValue(values);
@@ -136,11 +156,15 @@ class EcuSettingsRMM extends $pb.ProtobufEnum {
   static const EcuSettingsRMM RMM_N_A = EcuSettingsRMM._(0, _omitEnumNames ? '' : 'RMM_N_A');
   static const EcuSettingsRMM RMM_ON = EcuSettingsRMM._(1, _omitEnumNames ? '' : 'RMM_ON');
   static const EcuSettingsRMM RMM_OFF = EcuSettingsRMM._(2, _omitEnumNames ? '' : 'RMM_OFF');
+  static const EcuSettingsRMM RMM_SETTING_TO_ON = EcuSettingsRMM._(3, _omitEnumNames ? '' : 'RMM_SETTING_TO_ON');
+  static const EcuSettingsRMM RMM_SETTING_TO_OFF = EcuSettingsRMM._(4, _omitEnumNames ? '' : 'RMM_SETTING_TO_OFF');
 
   static const $core.List<EcuSettingsRMM> values = <EcuSettingsRMM> [
     RMM_N_A,
     RMM_ON,
     RMM_OFF,
+    RMM_SETTING_TO_ON,
+    RMM_SETTING_TO_OFF,
   ];
 
   static final $core.Map<$core.int, EcuSettingsRMM> _byValue = $pb.ProtobufEnum.initByValue(values);

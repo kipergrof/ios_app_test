@@ -1,11 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_test1/bindings/ble_binding.dart';
-import 'package:flutter_test1/proto/elvl.pb.dart';
-import 'package:flutter_test1/ui/ble_connect_page.dart';
+import '../proto/elvl.pb.dart';
 import 'package:get/get.dart';
 
 import '../controllers/global_controller.dart';
@@ -90,12 +84,15 @@ class SettingsPage extends GetView<SettingsController> {
         rma = "N/A";
         break;
       case EcuSettingsRMA.RMA_FACTORY:
+      case EcuSettingsRMA.RMA_SETTING_TO_FACTORY:
         rma = "Factory";
         break;
       case EcuSettingsRMA.RMA_HIGHER_8:
+      case EcuSettingsRMA.RMA_SETTING_TO_HIGHER_8:
         rma = "+8%";
         break;
       case EcuSettingsRMA.RMA_LOWER_15:
+      case EcuSettingsRMA.RMA_SETTING_TO_LOWER_15:
         rma = "-15%";
         break;
       default:
@@ -106,92 +103,139 @@ class SettingsPage extends GetView<SettingsController> {
         tpm = "N/A";
         break;
       case EcuSettingsTPM.TPM_PSI_150:
-        tpm = "150 psi";
+      case EcuSettingsTPM.TPM_SETTING_TO_PSI_150:
+        tpm = "150 PSI";
         break;
       case EcuSettingsTPM.TPM_PSI_175:
-        tpm = "175 psi";
+      case EcuSettingsTPM.TPM_SETTING_TO_PSI_175:
+        tpm = "175 PSI";
         break;
       case EcuSettingsTPM.TPM_PSI_200:
-        tpm = "200 psi";
+      case EcuSettingsTPM.TPM_SETTING_TO_PSI_200:
+        tpm = "200 PSI";
         break;
       default:
+    }
+    if (controller.getBleDevStatus().value != BleDevStatus.connected) {
+      return CupertinoFormSection.insetGrouped(
+        header: const Text("ECU"),
+        backgroundColor: CupertinoColors.darkBackgroundGray,
+        children: const [
+          CupertinoListTile(
+            title: Text("Communication"),
+          ),
+          CupertinoListTile(
+            title: Text("Ride-Hieght-On-Start"),
+          ),
+          CupertinoListTile(
+            title: Text("RideMonitor Mode"),
+          ),
+          CupertinoListTile(
+            title: Text("Trim Mode"),
+          ),
+          CupertinoListTile(
+            title: Text("Tank Presure Mode"),
+          ),
+          CupertinoListTile(
+            title: Text("RideMonitor Mode Accuracy"),
+          ),
+        ],
+      );
     }
 
     return CupertinoFormSection.insetGrouped(
         header: const Text("ECU"),
         backgroundColor: CupertinoColors.darkBackgroundGray,
         children: [
+           CupertinoListTile(
+            title: const Text("Communication"),
+            additionalInfo: ecu.communicationState ? const Text("OK"): const Text("Problem Detected"),
+          ),
           CupertinoListTile(
-            title: Text("Ride-Hieght-On-Start"),
-            trailing: (ecu.settings.rhos == EcuSettingsRHOS.RHOS_N_A)
+            title: const Text("Ride-Hieght-On-Start"),
+            trailing: (ecu.settings.rhos == EcuSettingsRHOS.RHOS_N_A ||
+                    ecu.settings.rhos == EcuSettingsRHOS.RHOS_SETTING_TO_OFF ||
+                    ecu.settings.rhos == EcuSettingsRHOS.RHOS_SETTING_TO_ON)
                 ? const CupertinoActivityIndicator()
                 : CupertinoSwitch(
                     // This bool value toggles the switch.
-                    value: ecu.settings.rhos == EcuSettingsRHOS.RHOS_OFF ? false: true,
+                    value: ecu.settings.rhos == EcuSettingsRHOS.RHOS_OFF
+                        ? false
+                        : true,
                     onChanged: (bool? value) {
-                      if (true == value)
-                      {
+                      if (true == value) {
                         controller.setRhosOn();
-                      }
-                      else
-                      {
+                      } else {
                         controller.setRhosOff();
                       }
-                      ecu.settings.rhos = EcuSettingsRHOS.RHOS_N_A;
+                      //  ecu.settings.rhos = EcuSettingsRHOS.RHOS_N_A;
                     },
                   ),
           ),
           CupertinoListTile(
-            title: Text("RideMonitor Mode"),
-            trailing: (ecu.settings.rmm == EcuSettingsRMM.RMM_N_A)
+            title: const Text("RideMonitor Mode"),
+            trailing: (ecu.settings.rmm == EcuSettingsRMM.RMM_N_A ||
+                    ecu.settings.rmm == EcuSettingsRMM.RMM_SETTING_TO_OFF ||
+                    ecu.settings.rmm == EcuSettingsRMM.RMM_SETTING_TO_ON)
                 ? const CupertinoActivityIndicator()
                 : CupertinoSwitch(
                     // This bool value toggles the switch.
-                    value: ecu.settings.rmm == EcuSettingsRMM.RMM_OFF ? false: true,
+                    value: ecu.settings.rmm == EcuSettingsRMM.RMM_OFF
+                        ? false
+                        : true,
                     onChanged: (bool? value) {
-                      if (true == value)
-                      {
+                      if (true == value) {
                         controller.setRmmOn();
-                      }
-                      else
-                      {
+                      } else {
                         controller.setRmmOff();
                       }
-                      ecu.settings.rmm == EcuSettingsRMM.RMM_N_A;
+                      //  ecu.settings.rmm == EcuSettingsRMM.RMM_N_A;
                     },
                   ),
           ),
           CupertinoListTile(
-            title: Text("Trim Mode"),
-            trailing: (ecu.settings.tm == EcuSettingsTM.TM_N_A)
+            title: const Text("Trim Mode"),
+            trailing: (ecu.settings.tm == EcuSettingsTM.TM_N_A ||
+                    ecu.settings.tm == EcuSettingsTM.TM_SETTING_TO_OFF ||
+                    ecu.settings.tm == EcuSettingsTM.TM_SETTING_TO_ON)
                 ? const CupertinoActivityIndicator()
                 : CupertinoSwitch(
                     // This bool value toggles the switch.
-                    value: ecu.settings.tm == EcuSettingsTM.TM_OFF ? false: true,
+                    value:
+                        ecu.settings.tm == EcuSettingsTM.TM_OFF ? false : true,
                     onChanged: (bool? value) {
-                      if (true == value)
-                      {
+                      if (true == value) {
                         controller.setTmOn();
-                      }
-                      else
-                      {
+                      } else {
                         controller.setTmOff();
                       }
-                      ecu.settings.tm == EcuSettingsTM.TM_N_A;
+                      //  ecu.settings.tm == EcuSettingsTM.TM_N_A;
                     },
                   ),
           ),
           CupertinoListTile(
-            title: Text("RideMonitor Mode Accuracy"),
-            additionalInfo: Text(rma),
+            title: const Text("Tank Presure Mode"),
+            additionalInfo: (ecu.settings.tpm == EcuSettingsTPM.TPM_N_A) ||
+                    (ecu.settings.tpm ==
+                        EcuSettingsTPM.TPM_SETTING_TO_PSI_150) ||
+                    (ecu.settings.tpm ==
+                        EcuSettingsTPM.TPM_SETTING_TO_PSI_175) ||
+                    (ecu.settings.tpm == EcuSettingsTPM.TPM_SETTING_TO_PSI_200)
+                ? const CupertinoActivityIndicator()
+                : Text(tpm),
             trailing: const Icon(
               CupertinoIcons.right_chevron,
               color: CupertinoColors.white,
             ),
+            onTap: () async {
+              await controller.goToTmpSettings();
+            },
           ),
           CupertinoListTile(
-            title: Text("Tank Presure Mode"),
-            additionalInfo: Text(tpm),
+            title: const Text("RideMonitor Mode Accuracy"),
+            additionalInfo: (ecu.settings.rma == EcuSettingsRMA.RMA_N_A)
+                ? const CupertinoActivityIndicator()
+                : Text(rma),
             trailing: const Icon(
               CupertinoIcons.right_chevron,
               color: CupertinoColors.white,

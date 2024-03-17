@@ -278,6 +278,7 @@ class GetEcuSettingResp extends $pb.GeneratedMessage {
     EcuSettings? settings,
     $core.int? errorCode,
     $core.int? brightness,
+    $core.bool? communicationState,
   }) {
     final $result = create();
     if (settings != null) {
@@ -289,6 +290,9 @@ class GetEcuSettingResp extends $pb.GeneratedMessage {
     if (brightness != null) {
       $result.brightness = brightness;
     }
+    if (communicationState != null) {
+      $result.communicationState = communicationState;
+    }
     return $result;
   }
   GetEcuSettingResp._() : super();
@@ -299,6 +303,7 @@ class GetEcuSettingResp extends $pb.GeneratedMessage {
     ..aOM<EcuSettings>(1, _omitFieldNames ? '' : 'settings', subBuilder: EcuSettings.create)
     ..a<$core.int>(2, _omitFieldNames ? '' : 'errorCode', $pb.PbFieldType.OU3)
     ..a<$core.int>(3, _omitFieldNames ? '' : 'brightness', $pb.PbFieldType.OU3)
+    ..aOB(4, _omitFieldNames ? '' : 'communicationState')
     ..hasRequiredFields = false
   ;
 
@@ -351,6 +356,15 @@ class GetEcuSettingResp extends $pb.GeneratedMessage {
   $core.bool hasBrightness() => $_has(2);
   @$pb.TagNumber(3)
   void clearBrightness() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.bool get communicationState => $_getBF(3);
+  @$pb.TagNumber(4)
+  set communicationState($core.bool v) { $_setBool(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasCommunicationState() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearCommunicationState() => clearField(4);
 }
 
 enum SetEcuSettingReq_Data {

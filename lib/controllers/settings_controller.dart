@@ -17,6 +17,10 @@ class SettingsController extends GetxController {
     await Get.toNamed('/ble_connection');
   }
 
+    Future<void> goToTmpSettings() async {
+    await Get.toNamed('/tpm');
+  }
+
   Rx<BleDevStatus> getBleDevStatus() {
     return _globalController.getBleDevStatus();
   }

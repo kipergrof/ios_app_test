@@ -4,18 +4,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test1/bindings/ble_binding.dart';
+import 'package:flutter_test1/bindings/tpm_binding.dart';
 import 'package:flutter_test1/controllers/ble_controller.dart';
 import 'package:flutter_test1/proto/elvl.pbenum.dart';
 import 'package:flutter_test1/ui/airride_page/base.dart';
 import 'package:flutter_test1/ui/ble_connect_page.dart';
 import 'package:flutter_test1/ui/settings_page.dart';
+import 'package:flutter_test1/ui/tank_pressure_mode_page.dart';
 import 'package:get/get.dart';
 
 import 'bindings/air_ride_control_binding.dart';
 import 'bindings/setting_bindig.dart';
 import 'controllers/global_controller.dart';
 import 'services/ble_service.dart';
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,8 +31,6 @@ Future<void> main() async {
 
 Future<void> initServices() async {
   log('Starting services ...');
-
-
 
   /// Here is where you put get_storage, hive, shared_pref initialization.
   /// or moor connection, or whatever that's async.
@@ -51,7 +50,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // 1 <-- SEE HERE
     return GetCupertinoApp(
-     // initialBinding: BleBinding() ,
+      // initialBinding: BleBinding() ,
       // 2 <-- SEE HERE
       theme: const CupertinoThemeData(
           brightness: Brightness.dark,
@@ -62,34 +61,43 @@ class MyApp extends StatelessWidget {
           applyThemeToAll: true),
 
       //home: AirRideControlPage(),
-      getPages: [ GetPage(
+      getPages: [
+        GetPage(
             name: '/',
             page: () => AirRideControlPage(),
-            bindings: [ AirRideControlBinding()]),
+            bindings: [AirRideControlBinding()]),
         GetPage(
           name: '/settings',
           page: () => SettingsPage(),
           bindings: [SettingBinding()],
           transition: Transition.rightToLeft,
           curve: Curves.easeInOut,
-        ), 
+        ),
         GetPage(
           name: '/ble_connection',
           page: () => BleConnectPage(),
           bindings: [BleBinding()],
           transition: Transition.rightToLeft,
           curve: Curves.easeInOut,
-        )],
+        ),
+        GetPage(
+          name: '/tpm',
+          page: () => TankPressureModePage(),
+          bindings: [TpmBinding()],
+          transition: Transition.rightToLeft,
+          curve: Curves.easeInOut,
+        )
+      ],
       //getPages: [GetPage(name: '/', page: ()=> CupertinoSimpleHomePage(),binding: BleBinding())],
       //getPages: [
-        
-        //  GetPage(
-        //   name: '/ble_connection',
-        //   page: () => BleConnectPage(),
-        //   bindings: [BleBinding()],
-        //   transition: Transition.rightToLeft,
-        //   curve: Curves.easeInOut,
-        // ) 
+
+      //  GetPage(
+      //   name: '/ble_connection',
+      //   page: () => BleConnectPage(),
+      //   bindings: [BleBinding()],
+      //   transition: Transition.rightToLeft,
+      //   curve: Curves.easeInOut,
+      // )
       // ],
       //initialRoute: '/',
     );
